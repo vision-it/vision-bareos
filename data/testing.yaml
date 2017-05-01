@@ -1,0 +1,15 @@
+---
+vision_bareos::client::director_hostname: 'beaker-dir'
+vision_bareos::client::director_address: 'localhost'
+
+vision_bareos::storage::nfs::mount_source: 'fileserver:/shared'
+
+vision_bareos::director::admin_mail: "hans@gruber.de"
+vision_bareos::director::sql_password: "rootymcrootroot"
+vision_bareos::director::webui_password: "webui"
+
+vision_bareos::director_hostname: "dir_host"
+vision_bareos::storage_hostname: "sd_host"
+
+vision_bareos::storage::storage_daemon_version: 'latest'
+vision_bareos::director::director_version: 'latest'

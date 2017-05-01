@@ -1,0 +1,38 @@
+---
+vision_bareos::collection_tag: 'bareos_client_config'
+vision_bareos::type: 'client'
+vision_bareos::director_config_dir: '/data/bareos/director/bareos-dir.d'
+vision_bareos::storage_config_dir: '/data/bareos/storage/bareos-sd.d'
+
+vision_bareos::repo::bareos_repo_keysource: "http://download.bareos.org/bareos/release/latest/Debian_8.0/Release.key"
+vision_bareos::repo::bareos_repo_keyid: "0143857D9CE8C2D182FE2631F93C028C093BFBA2"
+vision_bareos::repo::bareos_repo_location: "http://download.bareos.org/bareos/release/latest/Debian_8.0/"
+
+vision_bareos::client::port: 9102
+vision_bareos::client::max_concurrent: 20
+vision_bareos::client::auto_prune: 'no'
+vision_bareos::client::job_retention: '3 months'
+vision_bareos::client::file_retention: '30 days'
+vision_bareos::client::fileset: LinuxDefault
+
+vision_bareos::storage::storage_path: '/storage/backups'
+vision_bareos::storage::storage_daemon_version: 'latest'
+
+vision_bareos::webui::http_port: 8080
+vision_bareos::webui::version: latest
+vision_bareos::webui::director_hostname: "%{facts.fqdn}"
+
+vision_bareos::director::mysql_version: '5.6'
+vision_bareos::director::director_version: 'mysql'
+vision_bareos::director::filesets:
+  linux_default:
+    identifier: LinuxDefault
+    description: 'Default FileSet for all Linux machines'
+    paths:
+      - "\\\\</vision/backup-fileset"
+
+lookup_options:
+  vision_bareos::director::filesets:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true

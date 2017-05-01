@@ -1,0 +1,10 @@
+# This file is managed by Puppet.
+
+Job {
+  Name = "<%= @identifier %>-job"
+  Client = "<%= @client %>-fd"
+  JobDefs = "DefaultJob"
+  FileSet = "<%= @fileset %>"
+  Type = "<%= @job_type %>"
+  Enabled = "<%= @enabled %>"
+}

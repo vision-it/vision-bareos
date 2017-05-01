@@ -1,0 +1,16 @@
+# This file is managed by Puppet.
+
+FileSet {
+  Name = "<%= @identifier %>"
+  Description = "<%= @description %>"
+  Include {
+    Options {
+      Signature = SHA1
+      One FS = No
+      compression = LZ4HC
+    }
+    <% @paths.each do |path| -%>
+    File = "<%= path %>"
+    <% end -%>
+  }
+}

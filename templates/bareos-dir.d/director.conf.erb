@@ -1,0 +1,8 @@
+Director {
+  Name = <%= @director_hostname %>
+  QueryFile = "/usr/lib/bareos/scripts/query.sql"
+  Maximum Concurrent Jobs = 10
+  Password = <%= @director_password %>
+  Messages = Daemon
+  Auditing = yes
+}
