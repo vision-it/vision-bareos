@@ -45,6 +45,9 @@ class vision_bareos::director::run (
     env     => [
       "MYSQL_ROOT_PASSWORD=${sql_password}"
     ],
+    ports   => [
+      '127.0.0.1:13306:3306'
+    ],
   }
 
   ::docker::run { 'bareos-director':
