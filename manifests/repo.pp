@@ -33,7 +33,7 @@ class vision_bareos::repo (
     repos    => '', # This is correct
   }
   -> exec { 'bareos_apt_get_update':
-    command => 'apt update',
+    command => 'apt-get update',
     cwd     => '/tmp',
     path    => ['/usr/bin'],
     unless  => '/usr/bin/dpkg --list | /bin/grep -q bareos-filedaemon',
