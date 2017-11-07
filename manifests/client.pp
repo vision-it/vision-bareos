@@ -25,6 +25,7 @@ class vision_bareos::client (
   String $job_retention,
   String $file_retention,
   String $fileset,
+  Boolean $manage_repo,
 
   Hash $job = {},
   String $director_config_dir = $vision_bareos::director_config_dir,
@@ -36,11 +37,13 @@ class vision_bareos::client (
 
   $client_password = fqdn_rand_string(25)
 
-  contain vision_bareos::repo
+  if $manage_repo {
+    contain vision_bareos::repo
 
-  Class['::vision_bareos::repo']
-  -> package { 'bareos-filedaemon':
-    ensure => 'present',
+    Class['::vision_bareos::repo']
+    -> package { 'bareos-filedaemon':
+      ensure => 'present',
+    }
   }
 
   service { 'bareos-filedaemon':
