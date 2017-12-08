@@ -42,7 +42,7 @@ class vision_bareos::client (
 
     Class['::vision_bareos::repo']
     -> package { 'bareos-filedaemon':
-       ensure => 'present',
+      ensure => 'present',
     }
   } else {
     package { 'bareos-filedaemon':
