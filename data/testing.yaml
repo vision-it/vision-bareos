@@ -11,5 +11,8 @@ vision_bareos::director::webui_password: "webui"
 vision_bareos::director_hostname: "dir_host"
 vision_bareos::storage_hostname: "sd_host"
 
+vision_bareos::client::director_config_dir: '/data/bareos/director/bareos-dir.d'
+vision_bareos::client::collection_tag: 'bareos_client_config'
+
 vision_bareos::storage::storage_daemon_version: 'latest'
 vision_bareos::director::director_version: 'latest'

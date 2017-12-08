@@ -44,12 +44,19 @@ class vision_bareos::client (
     -> package { 'bareos-filedaemon':
       ensure => 'present',
     }
+  } else {
+    package { 'bareos-filedaemon':
+      ensure => 'present',
+    }
   }
 
   service { 'bareos-filedaemon':
-    ensure  => 'running',
-    enable  => true,
-    require => Package['bareos-filedaemon'],
+    ensure     => 'running',
+    enable     => true,
+    hasstatus  => true,
+    hasrestart => true,
+    provider   => 'systemd',
+    require    => Package['bareos-filedaemon'],
   }
 
   #

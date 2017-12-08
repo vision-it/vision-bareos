@@ -3,11 +3,24 @@ require 'spec_helper_acceptance'
 describe 'vision_bareos Client' do
   context 'with defaults' do
     it 'run idempotently' do
-      pp = <<-FILE
-        class { 'vision_bareos':
-         type => 'client',
+      if os[:release].to_i == 8
+        pp = <<-FILE
+        class { 'vision_bareos::client': }
+        FILE
+      elsif os[:release].to_i == 9
+        pp = <<-FILE
+
+        # Workaround for https://tickets.puppetlabs.com/browse/MODULES-5991
+        package {'dirmngr': ensure => present}
+
+
+        class { 'vision_bareos::client':
+         manage_repo => false,
         }
-      FILE
+        FILE
+      else
+        abort("Unsupported OS: #{os[:family]} #{os[:release]}")
+      end
 
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
