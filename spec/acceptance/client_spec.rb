@@ -3,11 +3,11 @@ require 'spec_helper_acceptance'
 describe 'vision_bareos Client' do
   context 'with defaults' do
     it 'run idempotently' do
-      pp = <<-EOS
+      pp = <<-FILE
         class { 'vision_bareos':
          type => 'client',
         }
-      EOS
+      FILE
 
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)

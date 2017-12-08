@@ -3,7 +3,7 @@ require 'spec_helper_acceptance'
 describe 'vision_bareos Director' do
   context 'with defaults' do
     it 'run idempotently' do
-      pp = <<-EOS
+      pp = <<-FILE
 
           # For Config Lint
           package{['bareos-director', 'bareos-storage']:
@@ -29,7 +29,7 @@ describe 'vision_bareos Director' do
         class { 'vision_bareos':
          type => 'director',
         }
-      EOS
+      FILE
 
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
