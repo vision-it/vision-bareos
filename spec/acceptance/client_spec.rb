@@ -9,6 +9,11 @@ describe 'vision_bareos Client' do
         FILE
       elsif os[:release].to_i == 9
         pp = <<-FILE
+
+        # Workaround for https://tickets.puppetlabs.com/browse/MODULES-5991
+        package {'dirmngr': ensure => present}
+
+
         class { 'vision_bareos::client':
          manage_repo => false,
         }
