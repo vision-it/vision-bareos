@@ -2,17 +2,17 @@
 fixtures:
   repositories:
     stdlib:
-      repo: "https://github.com/puppetlabs/puppetlabs-stdlib"
       ref: "4.24.0"
+      repo: "https://github.com/puppetlabs/puppetlabs-stdlib"
     docker:
       ref: "1.0.4"
       repo: "https://github.com/puppetlabs/puppetlabs-docker"
     apt:
-      repo: "https://github.com/puppetlabs/puppetlabs-apt"
       ref: "4.2.0"
+      repo: "https://github.com/puppetlabs/puppetlabs-apt"
     mysql:
-      repo: "https://github.com/puppetlabs/puppetlabs-mysql"
       ref: "3.11.0"
+      repo: "https://github.com/puppetlabs/puppetlabs-mysql"
     vision_docker:
       repo: "https://github.com/vision-it/vision-docker"
       ref: "origin/production"
