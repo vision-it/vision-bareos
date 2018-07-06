@@ -37,7 +37,7 @@ class vision_bareos::client (
 
   $client_password = fqdn_rand_string(25)
 
-  if $manage_repo {
+  if ($facts['os']['name'] == 'Debian') and ($facts['os']['release']['major'] == '8') {
     contain vision_bareos::repo
 
     Class['::vision_bareos::repo']
