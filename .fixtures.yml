@@ -5,13 +5,13 @@ fixtures:
       ref: "4.24.0"
       repo: "https://github.com/puppetlabs/puppetlabs-stdlib"
     docker:
-      ref: "1.0.4"
+      ref: "3.3.0"
       repo: "https://github.com/puppetlabs/puppetlabs-docker"
     apt:
-      ref: "4.2.0"
+      ref: "5.0.1"
       repo: "https://github.com/puppetlabs/puppetlabs-apt"
     mysql:
-      ref: "3.11.0"
+      ref: "5.4.0"
       repo: "https://github.com/puppetlabs/puppetlabs-mysql"
     vision_docker:
       repo: "https://github.com/vision-it/vision-docker"

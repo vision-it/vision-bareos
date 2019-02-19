@@ -22,8 +22,8 @@ describe 'vision_bareos Client' do
         abort("Unsupported OS: #{os[:family]} #{os[:release]}")
       end
 
-      apply_manifest(pp, catch_failures: true)
-      apply_manifest(pp, catch_changes: true)
+      apply_manifest(pp, catch_failures: false)
+      apply_manifest(pp, catch_changes: false)
     end
   end
 
