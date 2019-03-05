@@ -22,8 +22,18 @@ class vision_bareos::repo (
 
 ) {
 
+  # Note: In Stretch we're using the bareos-filedaemon from the Debian Repo
+  $bareos_repo_location_os = $facts['os']['name'] ? {
+    'Debian' => $facts['os']['release']['major'] ? {
+      '9' => "${bareos_repo_location}/Debian_9.0/",
+      '8' => "${bareos_repo_location}/Debian_8.0/",
+      default => "${bareos_repo_location}/Debian_8.0/",
+    },
+    default => "${bareos_repo_location}/Debian_8.0/"
+  }
+
   apt::source { 'bareos':
-    location => $bareos_repo_location,
+    location => $bareos_repo_location_os,
     key      => {
       id      => $bareos_repo_keyid,
       content => $bareos_repo_key,

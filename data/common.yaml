@@ -4,7 +4,7 @@ vision_bareos::type: 'client'
 vision_bareos::director_config_dir: '/data/bareos/director/bareos-dir.d'
 vision_bareos::storage_config_dir: '/data/bareos/storage/bareos-sd.d'
 
-vision_bareos::repo::bareos_repo_location: "http://download.bareos.org/bareos/release/latest/Debian_8.0/"
+vision_bareos::repo::bareos_repo_location: "http://download.bareos.org/bareos/release/17.2"
 vision_bareos::repo::bareos_repo_keyid: "0143857D9CE8C2D182FE2631F93C028C093BFBA2"
 vision_bareos::repo::bareos_repo_key: |
   -----BEGIN PGP PUBLIC KEY BLOCK-----

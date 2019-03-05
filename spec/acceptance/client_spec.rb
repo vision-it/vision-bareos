@@ -28,6 +28,19 @@ describe 'vision_bareos Client' do
   end
 
   context 'packages installed' do
+    if os[:release].to_i == 8
+      describe file('/etc/apt/sources.list.d/bareos.list') do
+        it { is_expected.to exist }
+        its(:content) { is_expected.to match '8.0' }
+      end
+    end
+    # Note: In Stretch we're using the bareos-filedaemon from the Debian Repo
+    if os[:release].to_i == 9
+      describe file('/etc/apt/sources.list.d/bareos.list') do
+        it { is_expected.not_to exist }
+      end
+    end
+
     describe package('bareos-filedaemon') do
       it { is_expected.to be_installed }
     end
