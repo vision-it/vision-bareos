@@ -4,40 +4,39 @@ vision_bareos::type: 'client'
 vision_bareos::director_config_dir: '/data/bareos/director/bareos-dir.d'
 vision_bareos::storage_config_dir: '/data/bareos/storage/bareos-sd.d'
 
-vision_bareos::repo::bareos_repo_location: "http://download.bareos.org/bareos/release/latest/Debian_8.0/"
-vision_bareos::repo::bareos_repo_keyid: "A0CFE15F71F798574AB363DD118283D9A7862CEE"
+vision_bareos::repo::bareos_repo_location: "http://download.bareos.org/bareos/release/17.2"
+vision_bareos::repo::bareos_repo_keyid: "0143857D9CE8C2D182FE2631F93C028C093BFBA2"
 vision_bareos::repo::bareos_repo_key: |
   -----BEGIN PGP PUBLIC KEY BLOCK-----
-  Version: GnuPG v2
+  Version: GnuPG v2.0.15 (GNU/Linux)
 
-  mQINBFw98pcBEAC5+gCcerO00uJ8eJklBR9Hw2HG4IQy9nAVry5ZJ0r4a+/RGRD/
-  vdohNmAestx/g3ZrfvljBkm5y/dMaTUl4LsfqS5MNXmA4xRQrvAT3XWx6d/y6TjU
-  13ATHbGcu+I3EjpZjCKWKhqqz8ycjL7CIgX+InlqNkUyO/bAqzFjpEHEOr1QzGlC
-  1YxUIfVFX/vLmhV/MzoGSHN78j7JxH4VaPHzk6s9UsCwaDl5iucph2633sKm1hP/
-  IDdGx5hTLJm0+ICdCcMrZFQh/fsbwl74AYIqYZCd7SyxnJ2EmTnLs5/yOs6YVtJn
-  7U8b3mzP/3lB5TscCl6ljh/omzto6xSiSjgy93uy5UMIQhuTYP4o/plJdRu+YxuL
-  J37YyltLG8HcsvaSchQIayYTh6a/spdE2jn0a4ENm+NZ1u82ANagqObhizyUjpLf
-  onU7SKTr+vaI5a+H57i6Uf7FIT+bvapitgFJKlhV6nqj1eL5FDFSObQxy2sPSEJD
-  w35o9LwoYiYsQKflib7OafCf1MMayCvOgf14YxmmpOf4/lGhZ8MLblAOXJgU+7vF
-  k4sKzBdNvLlr9ihb9EpK+dr60QIdllC2wmQqGFILNzwasaSYF4PQlm3S7/kIK6Si
-  y1hoTTh1x9nDfpaa/LzjEF5+o89A0c71j7bj0CxBMTd57RqLt8fSFO+LFQARAQAB
-  tCxCYXJlb3MgMTguMiBTaWduaW5nIEtleSA8c2lnbmluZ0BiYXJlb3MuY29tPokC
-  OQQTAQIAIwUCXD3ylwIbAwcLCQgHAwIBBhUIAgkKCwQWAgMBAh4BAheAAAoJEBGC
-  g9mnhizubO0QAIfNEiuiIbIu7UqjVMELrwGkR7RRvIeMwUEPEnk6UIX94xuLOZG7
-  vvMk23pnGuqFJcJj0yD/YCiYpHsRO1GGmW41hV3ih0lwnIPWS/3QnkONHZur1bG2
-  MtxMHMpbyImTRllttk0Uy06zjoNEJEhphWcDScJJUOORfuQUEu67XdJG4y9xytDB
-  27Ev+PwLITz82NWDUw3IN70eXcScWPJXMBptQVWOBWMeKsT+gx5uaYHNStkBmLbI
-  u9ErNziZxmQIEgCjgkOZ8zVOhI1kBs/om7MZvlQl1G1x/PyemVjgupQ857myZtPj
-  jsC5q9bhGAK3pIHZuOTRVlXeOTi2pzaMTpg1tGUPhIcuRsjbyz5EfbV1aLuRFiob
-  q2+GGTt4kea16n7C6z6++Rfvi2bO15UYHduaxmiQhgsluFFXq30wb+1lAgVvJ6Px
-  T7rSEvUO7/fmQDHXnVnV1WNjoU2+y483ATPGfP51t3AmjwkxDWyyQUHqxTSpTrYp
-  gqGi2PKECmui0qGfCAmUjGxZFkXckTPOWqKvp6gZxVRGNPT6Coh75gmyJdCGNUum
-  6scK9jamR06mqHVSry13AlXsMFJPj5w5O/hI/WVAQGnl40kDKQNcnDC60iPdW0hI
-  H5wYgq8qFMkDvIZB943d/f/5sYG040oEOfZChd+pAvIfD3yF57kQtdMIiEYEExEC
-  AAYFAlw98psACgkQQF4L4N7X6/pneQCgkDz/xigO3yCiuCTThjIIT2EMwesAoKps
-  3rxHo+vMEpHAMnU0Mt8BpRsi
-  =Pqd3
-
+  mQINBFXbK+sBEADHrDhXMa3bvy4f5MBwifTQswcXqiAkKQ5GRsHxMZIsJkq86Ewr
+  vt2jOn+sXPiWLn/hSXNohUmWu63OKiCJFZ9TLAWzFM0T3vYeevB3XviEzLlMcQZx
+  /dlCKpwa7B2dSISPsN1pe0Nnm0TKRUzIhEzYvwLs1mhBk0nJTrLMiuK+eJBnaI7R
+  9nnf3EBM0Am7ejJIZCbNKWik8wtF/h6MfeZ8bk3K4bHwGTl8lr27SOCFXcXJQgbR
+  bgSNHf/krRyItcIFf9eXP7YW2IOZqit+SdAnqlx6qFP1Y1JZHLADvCKesGEv9xDz
+  4mMWpcUmKt/lJD03CzG4hqLUe8IPEHrVsFgpz/wBML2qdD1iFWhhbjinEox/fCvG
+  BTqupd9Th9unRDuM+bOvV2AnldysCO88fbdVoXKFmyA28Uq349eEy4us8qVMbGHc
+  29BViHk7eHRewfQftKOdlmwgiqaxcyvaIbitsS3cpVuz+iHYlqR5X5U7yLeDJnI7
+  9YYfEAzpl9bAZP55RBcCgQ4Fdn+hFW60kzVa0dlsfI3Zujjxq/uXVTLgQkbXmhtD
+  BbkCIryyfOQwkLsbkq0A2U+7SPly44eWL1Nq6ElhXMjZ1PPuCaEmTjx7dOxkuxNM
+  XQONSjT8TgMnSv0CCdTFKAifaEkaYPdqKWQNb6CONZuGIwd9UsZlVXOjywARAQAB
+  tDFCYXJlb3MgUGFja2FnaW5nIFNpZ25pbmcgS2V5IDxzaWduaW5nQGJhcmVvcy5j
+  b20+iQI+BBMBAgAoBQJV2yvrAhsDBQkKTLgABgsJCAcDAgYVCAIJCgsEFgIDAQIe
+  AQIXgAAKCRD5PAKMCTv7omBGD/0dle6NpYwaCO66LcPv7Cg7QA86XgrlwoFI0gQt
+  Ffqn5tE/dpa0BT1vVWUL84yhPI2RAvC4uWTOBvmquCMChtZ1cY3UNayFKRE+gGmj
+  5h5cwdLRUebpbKAXDYN1QT/HdTd+iZSeKCCP2JJeXZjP/5hPDcn3MHQ1iyJMD4OE
+  KcWTG9WSHZyetPhms+OwJntxg8U3OkiAjAOzwKuzrTQwPzfjLKDWRp3/f0gRymrn
+  JJLuJhK/cI1gNUK2fbdYG9Cmp2LaMv6ADXw/pAUsZPicbcftDawHwaAh90GIwpu6
+  uo1kL8+nXBpac9pZqf/LX133GnXTpeGpAJC7Wdc8CeVwamvhXHM3+2wI6l+scICc
+  xmxnDugU8W1nt6uQYiTzwARwX3OhlM0y1yYpSPPXRLbB6Rtlt4N5HqCkHHuWIVrB
+  Bo/iRQYh0wNCKjPGHucqsuO0WvRydQQAk0nrcdb/Mt+MQ7dic106i9+3Y78R9H7G
+  t4pE/JWaTifssOdJwFJ+F0eTR0h142z9FNYk8xX03MqZvy0fn9FKHacgnQwcxmi3
+  90AktGPVIOEmTXtRblrEdbhfdBO2xBHFjF8OAxF7upynyHL8jFvJWs6w09d2C7ED
+  NdnQp4QYJyd0Si/Wh+p+BqRw51AYO1hD829MZ8RwRTOx+6jX3OOMoakZfFb3N7wI
+  wjFhJ4hGBBMRAgAGBQJV2yvsAAoJEEBeC+De1+v6IgUAoMMoIi5I/6E9E7ptCS+m
+  KxSlUhJ5AJ4rBchfkK22BoPCnE0ErHBlVPN6cw==
+  =Y033
   -----END PGP PUBLIC KEY BLOCK-----
 
 vision_bareos::client::port: 9102
