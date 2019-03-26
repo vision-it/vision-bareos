@@ -8,6 +8,8 @@ describe 'vision_bareos::storage::run' do
         facts
       end
 
+      let(:pre_condition) { 'include vision_docker' }
+
       let(:params) do
         {
           storage_path: '/storage/backups',
