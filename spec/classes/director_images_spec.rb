@@ -8,6 +8,8 @@ describe 'vision_bareos::director::images' do
         facts
       end
 
+      let(:pre_condition) { 'include vision_docker' }
+
       let(:params) do
         {
           director_version: '1.2.3',
