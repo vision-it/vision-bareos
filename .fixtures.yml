@@ -4,23 +4,14 @@ fixtures:
     stdlib:
       ref: "4.24.0"
       repo: "https://github.com/puppetlabs/puppetlabs-stdlib"
-    docker:
-      ref: "3.5.0"
-      repo: "https://github.com/puppetlabs/puppetlabs-docker"
     apt:
       ref: "5.0.1"
       repo: "https://github.com/puppetlabs/puppetlabs-apt"
     mysql:
       ref: "5.4.0"
       repo: "https://github.com/puppetlabs/puppetlabs-mysql"
-    vision_docker:
-      repo: "https://github.com/vision-it/vision-docker"
-      ref: "origin/production"
     vision_mysql:
       repo: "https://github.com/vision-it/vision-mysql"
-      ref: "origin/production"
-    vision_kerberos:
-      repo: "https://github.com/vision-it/vision-kerberos"
       ref: "origin/production"
   symlinks:
     vision_bareos: '#{source_dir}'

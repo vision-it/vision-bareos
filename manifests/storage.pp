@@ -21,13 +21,16 @@ class vision_bareos::storage (
 
 ) {
 
-  contain ::vision_docker
-  contain ::vision_bareos::storage::images
-  contain ::vision_bareos::storage::run
   contain ::vision_bareos::storage::config
 
-  Class['::vision_bareos::storage::images']
-  -> Class['::vision_bareos::storage::config']
-  ~> Class['::vision_bareos::storage::run']
+  package { ['bareos-storage', 'bareos-storage-python-plugin', 'bareos-tools']:
+    ensure => present,
+  }
+
+  service { 'bareos-sd' :
+    ensure  => running,
+    enable  => true,
+    require => Package['bareos-storage'],
+  }
 
 }

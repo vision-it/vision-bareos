@@ -19,11 +19,4 @@ class vision_bareos::webui (
 
 ) {
 
-  contain ::vision_docker
-  contain ::vision_bareos::webui::images
-  contain ::vision_bareos::webui::run
-
-  Class['::vision_bareos::webui::images']
-  ~> Class['::vision_bareos::webui::run']
-
 }

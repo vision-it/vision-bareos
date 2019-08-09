@@ -15,17 +15,6 @@ describe 'vision_bareos Director' do
             ensure => directory,
           }
 
-        class vision_docker () {}
-        class vision_kerberos::client () {}
-
-        class vision_bareos::director::database () {}
-        class vision_bareos::director::images () {}
-        class vision_bareos::director::run () {}
-        class vision_bareos::storage::images () {}
-        class vision_bareos::storage::run () {}
-        class vision_bareos::webui::images () {}
-        class vision_bareos::webui::run () {}
-
         class { 'vision_bareos':
          type => 'director',
         }
@@ -152,20 +141,6 @@ describe 'vision_bareos Director' do
       its(:content) { is_expected.to match '/mnt/fileserver' }
     end
   end
-
-  # # NFS Config
-  # context 'nfs configured' do
-  #   describe package('nfs-common') do
-  #     it { is_expected.to be_installed }
-  #   end
-  #   describe file('/etc/fstab') do
-  #     it { is_expected.to be_file }
-  #     its(:content) { is_expected.to match 'fileserver' }
-  #   end
-  #   describe file('/storage/backups/fileserver') do
-  #     it { is_expected.to be_directory }
-  #   end
-  # end
 
   # Lint Config
   context 'config files lint' do

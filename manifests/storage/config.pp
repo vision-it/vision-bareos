@@ -41,6 +41,8 @@ class vision_bareos::storage::config (
       purge   => true,
       recurse => true,
       force   => true,
+      owner   => 'bareos',
+      group   => 'bareos',
   }
 
   #
