@@ -13,7 +13,6 @@ describe 'vision_bareos' do
       let :pre_condition do
         [
           'class vision_bareos::repo () {}',
-          'include vision_docker'
         ]
       end
 

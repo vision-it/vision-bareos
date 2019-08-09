@@ -31,6 +31,10 @@ class vision_bareos::director::config (
   # Clean up config that comes with Bareos package
   #
 
+  file { '/etc/bareos':
+    ensure => directory,
+  }
+
   file { 'Manage DIR directory':
     ensure => directory,
     path   => $director_config_dir,
@@ -38,8 +42,6 @@ class vision_bareos::director::config (
 
   file {
     [
-      '/data/bareos/director/bareos-fd.d',
-      '/data/bareos/director/bareos-sd.d',
       "${director_config_dir}/director/",
       "${director_config_dir}/storage/",
       "${director_config_dir}/job/",
@@ -50,6 +52,8 @@ class vision_bareos::director::config (
       purge   => true,
       recurse => true,
       force   => true,
+      owner   => 'bareos',
+      group   => 'bareos',
   }
 
   #
@@ -94,7 +98,7 @@ class vision_bareos::director::config (
 
   file { 'Manage bconsole.conf on DIR':
     ensure  => present,
-    path    => '/data/bareos/director/bconsole.conf',
+    path    => "${director_config_dir}/director/bconsole.conf",
     mode    => '0644',
     content => template('vision_bareos/bareos-dir.d/bconsole.conf.erb'),
   }

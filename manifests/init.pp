@@ -28,19 +28,9 @@ class vision_bareos (
 
   if ($type == 'director') {
 
-    file {
-      [
-        '/data',
-        '/data/bareos',
-        '/data/bareos/storage',
-        '/data/bareos/director'
-      ]:
-        ensure => directory,
-    }
-
     contain vision_bareos::director
     contain vision_bareos::storage
-    contain vision_bareos::webui
+    # contain vision_bareos::webui
 
   }
 
