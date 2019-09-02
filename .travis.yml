@@ -1,7 +1,7 @@
 sudo: false
 language: ruby
 cache: bundler
-rvm: 2.3.4
+rvm: 2.3
 script:
   - 'bundle exec rake $CHECK'
 matrix:
@@ -9,10 +9,6 @@ matrix:
   allow_failures:
     - env: STRICT_VARIABLES="yes" CHECK="rubocop"
       bundler_args: --without testing acceptance
-    - env: STRICT_VARIABLES="yes" CHECK="beaker"
-      bundler_args: --without rubocop
-      services: docker
-      sudo: required
   include:
     - env: STRICT_VARIABLES="yes" CHECK="rubocop"
       bundler_args: --without testing acceptance
@@ -22,15 +18,12 @@ matrix:
       bundler_args: --without rubocop acceptance
     - env: STRICT_VARIABLES="yes" CHECK="spec"
       bundler_args: --without rubocop acceptance
-    - env: STRICT_VARIABLES="yes" CHECK="beaker"
-      bundler_args: --without rubocop
+    - env: STRICT_VARIABLES="yes" CHECK="beaker" BEAKER_set="debian9"
       services: docker
       sudo: required
-    - env: STRICT_VARIABLES="yes" CHECK="beaker" BEAKER_set="debian9"
-      bundler_args: --without rubocop
+    - env: STRICT_VARIABLES="yes" CHECK="beaker" BEAKER_set="debian10"
+      before_script: sh ./buster_fix.sh
       services: docker
       sudo: required
 notifications:
   email: false
-  slack:
-    secure: M7EKv1whRhl1U+Q9MOZogiD9V8pyr5bjFfM+QV0596Ooe+aqFL+KIZ/pGWymisn1hbCEf13hPyhE+N/MgWt/iNrexUSTaKbr61tQv8I0F9JMViOZrhGgyOr821chC+jSggo4le5G0kn8/6krLdLgZkHtN6G2rMM6uSd+EhK+WmmvsEpd5mqak0DEIEfjoRzDVTGNw7+vIwo4jlARKHGfP2NWN93iSNoILYYkbNXgKcJcMZcL3WrbLzWH4VbhqdWGsL77+KlOIccZNUVTVbRFouPuN/fZDWD9THkk4GvV6iegW6E78n2X7Q18yIjF4GPpT952GhAPWDlzlsFkaoOkHwz5eYwM8C4XoRPy9tIt1QnjmwAXppcj8PCy9TZTwJBoJ5nBwyYB2YToHcT1NlUvISXbFctlmf2ZV7f5IeHkWAtJRI8a/TKPIBNnTIAEp4vHqLSa3dkfJlmdC6G9QvCnv+CMZl6ClxeLrqyeCWviTLtNGRY7Tnx3gLBJ8lm1mfEcejDzKkLGJR7nK3bmkgEY2vWnXDg158RhR5FEHl7j9d9+WWxbpeNzDc6+saViTk4hGGBo+2BAAri1TTgV9/zeNhavIEUwMFt1mbfAmqeNs06/8ho6q5Yia9TETPceWaoHe7W65I29FgBFJF3lWVE4w4mZkn+sIl/TIRogy4C+KCU=
