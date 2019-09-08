@@ -62,6 +62,7 @@ vision_bareos::director::filesets:
     description: 'Default FileSet for all Linux machines'
     paths:
       - "\\\\</vision/backup-fileset"
+      # NOTE: this file is created by vision_default::backup_paths
 
 lookup_options:
   vision_bareos::director::filesets:
