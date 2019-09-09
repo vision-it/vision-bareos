@@ -5,11 +5,6 @@ describe 'vision_bareos Director' do
     it 'run idempotently' do
       pp = <<-FILE
 
-          # For Config Lint
-          package{['bareos-director', 'bareos-storage']:
-            ensure => present,
-          }
-
           # Fixture
           file{['/storage', '/storage/backups']:
             ensure => directory,
@@ -27,86 +22,70 @@ describe 'vision_bareos Director' do
 
   # Director
   context 'director files provisioned' do
-    describe file('/data/bareos') do
+    describe file('/etc/bareos') do
       it { is_expected.to be_directory }
     end
-    describe file('/data/bareos/director') do
+    describe file('/etc/bareos/bareos-dir.d/fileset') do
       it { is_expected.to be_directory }
     end
-    describe file('/data/bareos/director/bareos-dir.d/fileset') do
+    describe file('/etc/bareos/bareos-dir.d/client') do
       it { is_expected.to be_directory }
     end
-    describe file('/data/bareos/director/bareos-dir.d/client') do
+    describe file('/etc/bareos/bareos-dir.d/jobdefs') do
       it { is_expected.to be_directory }
     end
-    describe file('/data/bareos/director/bareos-dir.d/jobdefs') do
+    describe file('/etc/bareos/bareos-dir.d/schedule') do
       it { is_expected.to be_directory }
     end
-    describe file('/data/bareos/director/bareos-dir.d/schedule') do
+    describe file('/etc/bareos/bareos-dir.d/job') do
       it { is_expected.to be_directory }
     end
-    describe file('/data/bareos/director/bareos-dir.d/job') do
+    describe file('/etc/bareos/bareos-dir.d/storage') do
       it { is_expected.to be_directory }
     end
-    describe file('/data/bareos/director/bareos-dir.d/storage') do
-      it { is_expected.to be_directory }
-    end
-    describe file('/data/bareos/director/bareos-dir.d/job/Default-RestoreJob.conf') do
+    describe file('/etc/bareos/bareos-dir.d/job/Default-RestoreJob.conf') do
       it { is_expected.to be_file }
       its(:content) { is_expected.to match 'Default-RestoreJob-job' }
     end
-    describe file('/data/bareos/director/bareos-dir.d/jobdefs/DefaultJob.conf') do
+    describe file('/etc/bareos/bareos-dir.d/jobdefs/DefaultJob.conf') do
       it { is_expected.to be_file }
       its(:content) { is_expected.to match 'LinuxDefault' }
     end
-    describe file('/data/bareos/director/bareos-dir.d/schedule/WeeklyCycle.conf') do
+    describe file('/etc/bareos/bareos-dir.d/schedule/WeeklyCycle.conf') do
       it { is_expected.to be_file }
       its(:content) { is_expected.to match 'WeeklyCycle' }
     end
-    describe file('/data/bareos/director/bareos-dir.d/fileset/LinuxDefault.conf') do
+    describe file('/etc/bareos/bareos-dir.d/fileset/LinuxDefault.conf') do
       it { is_expected.to be_file }
       its(:content) { is_expected.to match 'LinuxDefault' }
       its(:content) { is_expected.to match 'backup-fileset' }
     end
-    describe file('/data/bareos/director/bareos-dir.d/director/dir_host.conf') do
-      it { is_expected.to be_file }
-      its(:content) { is_expected.to match 'dir_host' }
-    end
-    describe file('/data/bareos/director/bareos-dir.d/storage/DefaultStorage.conf') do
+    describe file('/etc/bareos/bareos-dir.d/storage/DefaultStorage.conf') do
       it { is_expected.to be_file }
       its(:content) { is_expected.to match 'sd_host' }
     end
-    describe file('/data/bareos/director/bconsole.conf') do
+    describe file('/etc/bareos/bconsole.conf') do
       it { is_expected.to be_file }
-      its(:content) { is_expected.to match 'dir_host' }
     end
   end
 
   # Storage Daemon
   context 'storage files provisioned' do
-    describe file('/data/bareos') do
+    describe file('/etc/bareos') do
       it { is_expected.to be_directory }
     end
-    describe file('/data/bareos/storage') do
-      it { is_expected.to be_directory }
-    end
-    describe file('/data/bareos/storage/bareos-sd.d/director/dir_host.conf') do
+    describe file('/etc/bareos/bareos-sd.d/director/dir_host.conf') do
       it { is_expected.to be_file }
       its(:content) { is_expected.to match 'dir_host' }
     end
-    describe file('/data/bareos/storage/bareos-sd.d/storage/sd_host.conf') do
-      it { is_expected.to be_file }
-      its(:content) { is_expected.to match 'DefaultStorage' }
-    end
-    describe file('/data/bareos/storage/bareos-sd.d/messages/Standard.conf') do
+    describe file('/etc/bareos/bareos-sd.d/messages/Standard.conf') do
       it { is_expected.to be_file }
       its(:content) { is_expected.to match 'dir_host' }
     end
-    describe file('/data/bareos/storage/bareos-sd.d/device/LocalFile.conf') do
+    describe file('/etc/bareos/bareos-sd.d/device/LocalFile.conf') do
       it { is_expected.to be_file }
-      its(:content) { is_expected.to match '/mnt/local' }
     end
-    describe file('/data/bareos/storage/bareos-sd.d/device/FileServer.conf') do
+    describe file('/etc/bareos/bareos-sd.d/device/FileServer.conf') do
       it { is_expected.to be_file }
       its(:content) { is_expected.to match '/mnt/fileserver' }
     end
@@ -114,29 +93,21 @@ describe 'vision_bareos Director' do
 
   # Storage Daemon
   context 'storage files provisioned' do
-    describe file('/data/bareos') do
+    describe file('/etc/bareos') do
       it { is_expected.to be_directory }
     end
-    describe file('/data/bareos/storage') do
-      it { is_expected.to be_directory }
-    end
-    describe file('/data/bareos/storage/bareos-sd.d/director/dir_host.conf') do
+    describe file('/etc/bareos/bareos-sd.d/director/dir_host.conf') do
       it { is_expected.to be_file }
       its(:content) { is_expected.to match 'dir_host' }
     end
-    describe file('/data/bareos/storage/bareos-sd.d/storage/sd_host.conf') do
-      it { is_expected.to be_file }
-      its(:content) { is_expected.to match 'DefaultStorage' }
-    end
-    describe file('/data/bareos/storage/bareos-sd.d/messages/Standard.conf') do
+    describe file('/etc/bareos/bareos-sd.d/messages/Standard.conf') do
       it { is_expected.to be_file }
       its(:content) { is_expected.to match 'dir_host' }
     end
-    describe file('/data/bareos/storage/bareos-sd.d/device/LocalFile.conf') do
+    describe file('/etc/bareos/bareos-sd.d/device/LocalFile.conf') do
       it { is_expected.to be_file }
-      its(:content) { is_expected.to match '/mnt/local' }
     end
-    describe file('/data/bareos/storage/bareos-sd.d/device/FileServer.conf') do
+    describe file('/etc/bareos/bareos-sd.d/device/FileServer.conf') do
       it { is_expected.to be_file }
       its(:content) { is_expected.to match '/mnt/fileserver' }
     end
@@ -151,8 +122,8 @@ describe 'vision_bareos Director' do
     # describe command('/usr/sbin/bareos-dir -t /data/bareos/director') do
     #   its(:exit_status) { is_expected.to eq 0 }
     # end
-    describe command('/usr/sbin/bareos-sd -t /data/bareos/storage') do
-      its(:exit_status) { is_expected.to eq 0 }
-    end
+    # describe command('/usr/sbin/bareos-sd -t /data/bareos/storage') do
+    #   its(:exit_status) { is_expected.to eq 0 }
+    # end
   end
 end
