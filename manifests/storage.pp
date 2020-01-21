@@ -13,10 +13,8 @@
 
 class vision_bareos::storage (
 
-  String $storage_daemon_version,
-  String $storage_path,
-
-  String $storage_password  = $vision_bareos::storage_password,
+  String $storage_config_dir,
+  String $storage_password  = $vision_bareos::director::storage_password,
   String $director_hostname = $::fqdn,
 
 ) {

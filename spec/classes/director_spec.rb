@@ -11,12 +11,6 @@ describe 'vision_bareos' do
       end
 
       context 'compile director' do
-        let :pre_condition do
-          [
-            'class vision_kerberos::client () {}'
-          ]
-        end
-
         let :params do
           {
             type: 'director'

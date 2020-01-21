@@ -15,15 +15,15 @@
 
 class vision_bareos::director::config (
 
-  String $collection_tag      = $vision_bareos::collection_tag,
-  String $director_config_dir = $vision_bareos::director_config_dir,
-
-  String $storage_hostname    = $vision_bareos::storage_hostname,
-  String $storage_password    = $vision_bareos::storage_password,
   String $director_hostname   = $vision_bareos::director_hostname,
-  String $director_password   = $vision_bareos::director_password,
+  String $storage_hostname    = $vision_bareos::storage_hostname,
 
-  Hash   $filesets            = $vision_bareos::director::filesets,
+  String $director_config_dir = $vision_bareos::director::director_config_dir,
+  String $director_password   = $vision_bareos::director::director_password,
+  String $storage_password    = $vision_bareos::director::storage_password,
+
+  Hash   $filesets            = $::vision_bareos::director::filesets,
+  Hash   $hosts               = $::vision_bareos::director::hosts,
 
 ) {
 
@@ -63,11 +63,24 @@ class vision_bareos::director::config (
   create_resources(vision_bareos::director::fileset, $filesets);
 
   #
-  # Collect Client and Job config
+  # Create Client and Job config for each host
   #
 
-  File <<| tag == $collection_tag |>>
-  Vision_bareos::Job <<| tag == $collection_tag |>>
+  each ($hosts) | $host, $params | {
+    vision_bareos::job { $host:
+      client => $host,
+      *      => $params['job'],
+    }
+
+    # TODO: host fqdn param
+    # TODO: host passwrd param
+    file { "${host}-bareos-client.conf":
+      ensure  => present,
+      path    => "${director_config_dir}/client/${host}.conf",
+      mode    => '0644',
+      content => template('vision_bareos/bareos-dir.d/client.conf.erb'),
+    }
+  }
 
   #
   # Director config

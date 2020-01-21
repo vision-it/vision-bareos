@@ -1,20 +1,25 @@
 require 'spec_helper_acceptance'
 
-describe 'vision_bareos Client' do
+describe 'vision_bareos::client' do
   context 'with defaults' do
     it 'run idempotently' do
-      pp = <<-FILE
-
+      setup = <<-FILE
         # Workaround for https://tickets.puppetlabs.com/browse/MODULES-5991
         package {'dirmngr': ensure => present}
+        package { 'bareos-client':
+         ensure => 'present',
+        }->
+        exec { '/bin/cp -p /etc/init.d/bareos-fd /etc/init.d/bareos-filedaemon':
+        }
+      FILE
+      apply_manifest(setup, accept_all_exit_codes: true, catch_failures: false)
 
+      pp = <<-FILE
         class { 'vision_bareos::client':
-         manage_repo => false,
         }
         FILE
 
-      apply_manifest(pp, catch_failures: false)
-      apply_manifest(pp, catch_changes: false)
+      apply_manifest(pp, catch_failures: true)
     end
   end
 

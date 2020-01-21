@@ -12,7 +12,7 @@ define vision_bareos::director::fileset (
   String $description,
   Array  $paths,
 
-  String $director_config_dir = $vision_bareos::director_config_dir,
+  String $director_config_dir = $vision_bareos::director::director_config_dir,
 
 ) {
 

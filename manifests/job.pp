@@ -15,7 +15,7 @@ define vision_bareos::job (
   String $job_defs            = 'DefaultJob',
   String $fileset             = 'LinuxDefault',
   String $job_type            = 'Backup',
-  String $director_config_dir = $vision_bareos::director_config_dir,
+  String $director_config_dir = $vision_bareos::director::director_config_dir,
 
 ) {
 

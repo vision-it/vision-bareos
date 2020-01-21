@@ -19,27 +19,15 @@ class vision_bareos::client (
   String $director_hostname,
   String $director_address,
 
-  Variant[String, Integer] $port,
-  Integer $max_concurrent,
-  String $auto_prune,
-  String $job_retention,
-  String $file_retention,
-  String $fileset,
+  String $client_password,
   Boolean $manage_repo,
 
-  Hash $job = {},
-  String $director_config_dir = $vision_bareos::director_config_dir,
-  String $fqdn                = $::fqdn,
-  String $address             = $::ipaddress,
-  String $collection_tag      = $vision_bareos::collection_tag,
+  String $fqdn = $::fqdn,
 
 ) {
 
-  $client_password = fqdn_rand_string(25)
-
-  if ($facts['os']['name'] == 'Debian') and ($facts['os']['release']['major'] == '8') {
+  if ($manage_repo) {
     contain vision_bareos::repo
-
     Class['::vision_bareos::repo']
     -> package { 'bareos-filedaemon':
       ensure => 'present',
@@ -55,7 +43,6 @@ class vision_bareos::client (
     enable     => true,
     hasstatus  => true,
     hasrestart => true,
-    provider   => 'systemd',
     require    => Package['bareos-filedaemon'],
   }
 
@@ -114,24 +101,6 @@ class vision_bareos::client (
     content => template('vision_bareos/bareos-fd.d/Standard.conf.erb'),
     require => Package['bareos-filedaemon'],
     notify  => Service['bareos-filedaemon']
-  }
-
-  #
-  # The client and job configuration for each client gets exported and collected on the Director
-  #
-
-  @@::vision_bareos::job { $fqdn:
-    *      => $job,
-    tag    => $collection_tag,
-    client => $fqdn,
-  }
-
-  @@file { "${fqdn}-bareos-client.conf":
-    ensure  => present,
-    tag     => $collection_tag,
-    path    => "${director_config_dir}/client/${fqdn}.conf",
-    mode    => '0644',
-    content => template('vision_bareos/bareos-dir.d/client.conf.erb'),
   }
 
 }
