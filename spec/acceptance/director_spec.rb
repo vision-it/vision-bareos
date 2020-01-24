@@ -1,10 +1,28 @@
 require 'spec_helper_acceptance'
 
-describe 'vision_bareos Director' do
+describe 'vision_bareos::director' do
   context 'with defaults' do
     it 'run idempotently' do
-      pp = <<-FILE
+      setup = <<-FILE
+        # Workaround for https://tickets.puppetlabs.com/browse/MODULES-5991
+        package {'dirmngr': ensure => present}
+        # Manually start with init, since we aint got so systemd
+        if($facts[os][distro][codename] == 'stretch') {
+         $p = 'mysql-server'
+        } else {
+         $p = 'mariadb-server'
+        }
+        package { $p:
+          ensure => present,
+        }->
+          exec { '/bin/cp -p /etc/init.d/mysql /etc/init.d/mariadb':
+        }->
+          exec { '/bin/bash /etc/init.d/mysql start':
+        }
+      FILE
+      apply_manifest(setup, accept_all_exit_codes: true, catch_failures: false)
 
+      pp = <<-FILE
           # Fixture
           file{['/storage', '/storage/backups']:
             ensure => directory,
@@ -15,8 +33,7 @@ describe 'vision_bareos Director' do
         }
       FILE
 
-      apply_manifest(pp, catch_failures: false)
-      apply_manifest(pp, catch_changes: false)
+      apply_manifest(pp, catch_failures: true)
     end
   end
 
@@ -69,6 +86,28 @@ describe 'vision_bareos Director' do
     end
   end
 
+  # Director Client Config
+  context 'client config on director' do
+    describe file('/etc/bareos/bareos-dir.d/client/barfoo.local.conf') do
+      it { is_expected.to be_file }
+      its(:content) { is_expected.to match 'barfoo' }
+      its(:content) { is_expected.to match 'secret2' }
+    end
+    describe file('/etc/bareos/bareos-dir.d/client/foobar.local.conf') do
+      it { is_expected.to be_file }
+      its(:content) { is_expected.to match 'foobar' }
+      its(:content) { is_expected.to match 'secret1' }
+    end
+    describe file('/etc/bareos/bareos-dir.d/job/barfoo.local.conf') do
+      it { is_expected.to be_file }
+      its(:content) { is_expected.to match 'Enabled = "yes"' }
+    end
+    describe file('/etc/bareos/bareos-dir.d/job/foobar.local.conf') do
+      it { is_expected.to be_file }
+      its(:content) { is_expected.to match 'Enabled = "no"' }
+    end
+  end
+
   # Storage Daemon
   context 'storage files provisioned' do
     describe file('/etc/bareos') do
@@ -118,12 +157,8 @@ describe 'vision_bareos Director' do
     describe command('/usr/sbin/bareos-fd -t') do
       its(:exit_status) { is_expected.to eq 0 }
     end
-    # TODO: Disabled until fixed
-    # describe command('/usr/sbin/bareos-dir -t /data/bareos/director') do
-    #   its(:exit_status) { is_expected.to eq 0 }
-    # end
-    # describe command('/usr/sbin/bareos-sd -t /data/bareos/storage') do
-    #   its(:exit_status) { is_expected.to eq 0 }
-    # end
+    describe command('/usr/sbin/bareos-sd') do
+      its(:exit_status) { is_expected.to eq 0 }
+    end
   end
 end

@@ -1,25 +1,13 @@
 # This file is managed by Puppet.
 
 Client {
-  Name = "<%= @fqdn %>-fd"
+  Name = "<%= @host %>-fd"
+  Address = <%= @host %>
+  Password = "<%= @params["client_password"] %>"
   Passive = yes
-  Address = <%= @address %>
-<% if @port != '' -%>
-  FDPort = <%= @port %>
-<% end -%>
-<% if @client_password != '' -%>
-  Password = "<%= @client_password %>"
-<% end -%>
-<% if @file_retention != '' -%>
-  FileRetention = <%= @file_retention %>
-<% end -%>
-<% if @job_retention != '' -%>
-  JobRetention = <%= @job_retention %>
-<% end -%>
-<% if @auto_prune != '' -%>
-  AutoPrune = <%= @auto_prune %>
-<% end -%>
-<% if @max_concurrent != '' -%>
-  MaximumConcurrentJobs = <%= @max_concurrent %>
-<% end -%>
+  FDPort = 9102
+  FileRetention = 30 days
+  JobRetention = 3 months
+  AutoPrune = no
+  MaximumConcurrentJobs = 20
 }

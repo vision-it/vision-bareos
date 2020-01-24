@@ -25,6 +25,7 @@ class vision_bareos::repo (
   # Note: In Stretch we're using the bareos-filedaemon from the Debian Repo
   $bareos_repo_location_os = $facts['os']['name'] ? {
     'Debian' => $facts['os']['release']['major'] ? {
+      '10' => "${bareos_repo_location}/Debian_10.0/",
       '9' => "${bareos_repo_location}/Debian_9.0/",
       '8' => "${bareos_repo_location}/Debian_8.0/",
       default => "${bareos_repo_location}/Debian_8.0/",

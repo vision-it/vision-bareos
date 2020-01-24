@@ -16,9 +16,9 @@
 class vision_bareos::storage::config (
 
   String $director_hostname  = $vision_bareos::director_hostname,
-  String $storage_config_dir = $vision_bareos::storage_config_dir,
   String $storage_hostname   = $vision_bareos::storage_hostname,
-  String $storage_password   = $vision_bareos::storage_password,
+  String $storage_config_dir = $vision_bareos::storage::storage_config_dir,
+  String $storage_password   = $vision_bareos::storage::storage_password,
 
 ) {
 

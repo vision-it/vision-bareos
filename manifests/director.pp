@@ -14,18 +14,17 @@
 class vision_bareos::director (
 
   String $admin_mail,
-  String $director_version,
-  String $mysql_version,
   String $sql_password,
-  # String $webui_password,
+  String $director_config_dir,
 
-  String $storage_hostname = $vision_bareos::storage_hostname,
-  String $storage_password = $vision_bareos::storage_password,
+  String $director_password = fqdn_rand_string(25),
+  String $storage_password  = fqdn_rand_string(25),
 
   String $smtp_hostname    = $::fqdn,
   String $sql_host         = $::fqdn,
   Array $environment       = [],
-  Hash  $filesets          = { },
+  Hash  $filesets          = {},
+  Hash  $hosts             = {},
 
 ) {
 
