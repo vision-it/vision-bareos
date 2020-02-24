@@ -2,5 +2,9 @@ Director {
   Name = <%= @director_hostname %>
   Address = <%= @director_address %>
   Password = <%= @client_password %>
+  TLS Enable = yes
+  TLS CA Certificate File = /vision/pki/VisionCA.crt
+  TLS Certificate = /vision/pki/<%= @facts['fqdn'] %>.crt
+  TLS Key = /vision/pki/<%= @facts['fqdn'] %>.key
   Description = "Allow the configured Director to access this file daemon."
 }

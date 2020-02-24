@@ -4,6 +4,10 @@ Client {
   Name = "<%= @host %>-fd"
   Address = <%= @host %>
   Password = "<%= @params["client_password"] %>"
+  TLS Enable = yes
+  TLS CA Certificate File = /vision/pki/VisionCA.crt
+  TLS Certificate = /vision/pki/<%= @facts['fqdn'] %>.crt
+  TLS Key = /vision/pki/<%= @facts['fqdn'] %>.key
   Passive = yes
   FDPort = 9102
   FileRetention = 30 days

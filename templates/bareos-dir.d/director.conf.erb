@@ -3,6 +3,11 @@ Director {
   QueryFile = "/usr/lib/bareos/scripts/query.sql"
   Maximum Concurrent Jobs = 10
   Password = <%= @director_password %>
+  TLS Enable = yes
+  TLS CA Certificate File = /vision/pki/VisionCA.crt
+  TLS Certificate = /vision/pki/<%= @facts['fqdn'] %>.crt
+  TLS Key = /vision/pki/<%= @facts['fqdn'] %>.key
+  TLS Verify Peer = yes
   Messages = Daemon
   Auditing = yes
 }
