@@ -92,11 +92,13 @@ describe 'vision_bareos::director' do
       it { is_expected.to be_file }
       its(:content) { is_expected.to match 'barfoo' }
       its(:content) { is_expected.to match 'secret2' }
+      its(:content) { is_expected.to match 'TLS' }
     end
     describe file('/etc/bareos/bareos-dir.d/client/foobar.local.conf') do
       it { is_expected.to be_file }
       its(:content) { is_expected.to match 'foobar' }
       its(:content) { is_expected.to match 'secret1' }
+      its(:content) { is_expected.to match 'TLS' }
     end
     describe file('/etc/bareos/bareos-dir.d/job/barfoo.local.conf') do
       it { is_expected.to be_file }

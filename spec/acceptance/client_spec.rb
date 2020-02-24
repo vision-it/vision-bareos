@@ -6,6 +6,14 @@ describe 'vision_bareos::client' do
       setup = <<-FILE
         # Workaround for https://tickets.puppetlabs.com/browse/MODULES-5991
         package {'dirmngr': ensure => present}
+
+        file { ['/vision']:
+            ensure => directory
+        }
+        # Generate dummy certs and ca
+            exec { '/bin/bash /etc/puppetlabs/code/modules/vision_bareos/files/testing/gencrt.sh':
+        }
+
         package { 'bareos-client':
          ensure => 'present',
         }->
@@ -41,6 +49,7 @@ describe 'vision_bareos::client' do
     describe file('/etc/bareos/bareos-fd.d/director/bareos-dir.conf') do
       it { is_expected.to exist }
       its(:content) { is_expected.to match 'beaker' }
+      its(:content) { is_expected.to match 'TLS' }
     end
   end
 end
