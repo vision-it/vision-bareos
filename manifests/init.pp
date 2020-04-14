@@ -4,12 +4,7 @@
 # Parameters
 # ----------
 #
-# Examples
-# --------
-#
-# @example
-# contain ::vision_bareos
-#
+# @param type What type the node is (director or client)
 
 class vision_bareos (
 

@@ -3,15 +3,6 @@
 #
 # Manages the entire config on the Bareos Storagey.
 #
-# Parameters
-# ----------
-#
-# Examples
-# --------
-#
-# @example
-# contain ::vision_bareos::storage::config
-#
 
 class vision_bareos::storage::config (
 

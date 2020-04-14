@@ -1,9 +1,14 @@
-# Class: vision_bareos::director::fileset
+# Define: vision_bareos::director::fileset
 # ===========================
+#
+# Resource for fileset on Director
 #
 # Parameters
 # ----------
 #
+# @param identifier Name of FileSet
+# @param description Description of FileSet
+# @param paths Paths in FileSet
 #
 
 define vision_bareos::director::fileset (

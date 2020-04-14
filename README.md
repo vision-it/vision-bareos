@@ -2,9 +2,6 @@
 
 [![Build Status](https://travis-ci.org/vision-it/vision-bareos.svg?branch=production)](https://travis-ci.org/vision-it/vision-bareos)
 
-
-## Parameter
-
 ## Usage
 
 Include in the *Puppetfile*:

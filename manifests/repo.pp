@@ -1,16 +1,7 @@
 # Class: vision_bareos::repo
 # ===========================
 #
-# Manages the Bareos repository
-#
-# Parameters
-# ----------
-#
-# Examples
-# --------
-#
-# @example
-# contain ::vision_bareos::repo
+# Manages the Bareos repository.
 #
 
 class vision_bareos::repo (

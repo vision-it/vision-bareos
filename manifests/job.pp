@@ -1,9 +1,12 @@
-# Class: vision_bareos::job
+# Define: vision_bareos::job
 # ===========================
+#
+# Bareos JobFile definition. To create Job on director
 #
 # Parameters
 # ----------
 #
+# @param client FQDN of client
 #
 
 define vision_bareos::job (

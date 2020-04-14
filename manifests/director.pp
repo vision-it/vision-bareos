@@ -4,11 +4,13 @@
 # Parameters
 # ----------
 #
-# Examples
-# --------
-#
-# @example
-# contain ::vision_bareos::director
+# @param admin_mail Email of Administrator
+# @param sql_password Password for SQL Database
+# @param director_config_dir Path to Bareos director config
+# @param director_password Director Password
+# @param storage_password Storage Password
+# @param filesets Filesets to backup
+# @param hosts List of Clients to create config for
 #
 
 class vision_bareos::director (
@@ -22,7 +24,6 @@ class vision_bareos::director (
 
   String $smtp_hostname    = $::fqdn,
   String $sql_host         = $::fqdn,
-  Array $environment       = [],
   Hash  $filesets          = {},
   Hash  $hosts             = {},
 

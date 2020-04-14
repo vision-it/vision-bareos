@@ -7,11 +7,10 @@
 # Parameters
 # ----------
 #
-# Examples
-# --------
-#
-# @example
-# contain ::vision_bareos::client
+# @param director_hostname Bareos Director hostname
+# @param director_address Bareos Director address
+# @param client_password Unique Bareos Client password
+# @param manage_repo Use Bareos apt repository or not (bool)
 #
 
 class vision_bareos::client (

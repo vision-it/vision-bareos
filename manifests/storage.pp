@@ -4,11 +4,9 @@
 # Parameters
 # ----------
 #
-# Examples
-# --------
-#
-# @example
-# contain ::vision_bareos::storage
+# @param storage_config_dir Path to storage directory
+# @param storage_password Password for Storage manager
+# @param director_hostname Name of Bareos director
 #
 
 class vision_bareos::storage (
