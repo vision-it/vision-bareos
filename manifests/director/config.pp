@@ -77,7 +77,7 @@ class vision_bareos::director::config (
     file { "${host}-bareos-client.conf":
       ensure  => present,
       path    => "${director_config_dir}/client/${host}.conf",
-      mode    => '0644',
+      mode    => '0640',
       content => template('vision_bareos/bareos-dir.d/client.conf.erb'),
     }
   }
@@ -105,21 +105,28 @@ class vision_bareos::director::config (
   file { 'Manage selfconfig on DIR':
     ensure  => present,
     path    => "${director_config_dir}/director/${director_hostname}.conf",
-    mode    => '0644',
+    mode    => '0640',
     content => template('vision_bareos/bareos-dir.d/director.conf.erb'),
   }
 
   file { 'Manage bconsole.conf on DIR':
     ensure  => present,
     path    => "${director_config_dir}/director/bconsole.conf",
-    mode    => '0644',
+    mode    => '0640',
     content => template('vision_bareos/bareos-dir.d/bconsole.conf.erb'),
+  }
+
+  file { 'Manage bconsole.conf':
+    ensure  => present,
+    path    => '/etc/bareos/bconsole.conf',
+    mode    => '0640',
+    content => template('vision_bareos/bconsole.conf.erb'),
   }
 
   file { 'Manage Storage config on DIR':
     ensure  => present,
     path    => "${director_config_dir}/storage/DefaultStorage.conf",
-    mode    => '0644',
+    mode    => '0640',
     content => template('vision_bareos/bareos-dir.d/storage.conf.erb'),
   }
 

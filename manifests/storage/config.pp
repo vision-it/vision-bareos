@@ -50,21 +50,21 @@ class vision_bareos::storage::config (
   file { 'Manage Messages on SD':
     ensure  => present,
     path    => "${storage_config_dir}/messages/Standard.conf",
-    mode    => '0644',
+    mode    => '0640',
     content => template('vision_bareos/bareos-sd.d/Standard.conf.erb'),
   }
 
   file { 'Manage Director on SD':
     ensure  => present,
     path    => "${storage_config_dir}/director/${director_hostname}.conf",
-    mode    => '0644',
+    mode    => '0640',
     content => template('vision_bareos/bareos-sd.d/bareos-dir.conf.erb'),
   }
 
   file { 'Manage devices on SD':
     ensure  => directory,
     path    => "${storage_config_dir}/device/",
-    mode    => '0644',
+    mode    => '0640',
     purge   => true,
     recurse => true,
     source  => 'puppet:///modules/vision_bareos/bareos-sd.d/device/',

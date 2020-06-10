@@ -83,6 +83,7 @@ describe 'vision_bareos::director' do
     end
     describe file('/etc/bareos/bconsole.conf') do
       it { is_expected.to be_file }
+      its(:content) { is_expected.to match 'Puppet' }
     end
   end
 

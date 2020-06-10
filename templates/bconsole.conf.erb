@@ -1,6 +1,7 @@
 # This file is managed by Puppet
-Console {
-  Name = <%= @director_hostname %>
-  Password = <%= @director_password %>
+Director {
+  Name = bareos-dir
+  address = localhost
+  Password = "<%= @director_password %>"
   Description = "Bareos Console credentials for local Director"
 }
